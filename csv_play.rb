@@ -91,6 +91,15 @@ end
 CSV.foreach("teachers.csv") { |row| p row }
 puts
 
+# write nested hashes to new or existing CSV file. NOTE: 'w' = overwrite
+hash_nest = [{name: "Pablo", age: 53}, {name: "Sabina", age: 38}, {name: "Gurutze", age: 45},]
+CSV.open("hashes.csv", "w") do |csv|
+  hash_nest.each { |item| csv << [item[:name], item[:age]] }
+end
+# outputs the 'teachers.csv' file
+CSV.foreach("hashes.csv") { |row| p row }
+puts
+
 
 # adding a local line to the same array
 # puts "Give a name: "
