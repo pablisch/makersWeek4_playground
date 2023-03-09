@@ -82,11 +82,12 @@ CSV.foreach("play.csv") { |row| data_arr << row }
 p data_arr
 puts
 
-# 
-nest = [%w[Pablo male teacher], %w[Sabina female teacher], %w[Gurutze female teacher]]
+# write nested array to new or existing CSV file. NOTE: 'w' = overwrite
+nest = [%w[Pablo male teacher], %w[Sabina female teacher], %w[Gurutze female teacher], %w[Slav male teacher]]
 CSV.open("teachers.csv", "w") do |csv|
   nest.each { |row| csv << row }
 end
+# outputs the 'teachers.csv' file
 CSV.foreach("teachers.csv") { |row| p row }
 puts
 
