@@ -46,6 +46,17 @@ end
 p output_str # => "Pablo,me\nBarry,father\nMegan,mother\nToby,brother\n"
 puts
 
+# generate a single line of CSV
+p CSV.generate_line(["Sabina", "female"]) # => "Sabina,female\n"
+puts
+
+# CSV extended Array method turns array into a CSV string
+p ["Sabina", "female"].to_csv # => "Sabina,female\n"
+puts
+
+# The above is messy with nested arrays! 
+p [["Sabina", "female"], ["Pablo", "male"]].to_csv # => "\"[\"\"Sabina\"\", \"\"female\"\"]\",\"[\"\"Pablo\"\", \"\"male\"\"]\"\n"
+puts
 
 # *** SECTION BELOW from https://medium.com/swlh/parsing-a-csv-file-in-ruby-6de8afd382c8 and own experimentation
 
@@ -70,6 +81,15 @@ data_arr = []
 CSV.foreach("play.csv") { |row| data_arr << row }
 p data_arr
 puts
+
+# 
+nest = [%w[Pablo male teacher], %w[Sabina female teacher], %w[Gurutze female teacher]]
+CSV.open("teachers.csv", "w") do |csv|
+  nest.each { |row| csv << row }
+end
+CSV.foreach("teachers.csv") { |row| p row }
+puts
+
 
 # adding a local line to the same array
 # puts "Give a name: "
